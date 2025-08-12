@@ -1,0 +1,9 @@
+POST http://localhost:3000/tags
+Content-Type: application/json
+
+
+{
+    "name": "JavaScript",
+    "slug": "javascript",
+    "description":" All posts java scripts"
+}
