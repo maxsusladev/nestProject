@@ -11,25 +11,24 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
 
 @Module({
   imports: [UsersModule, PostsModule, AuthModule,
-     TypeOrmModule.forRootAsync({
-      imports:[],
+    TypeOrmModule.forRootAsync({
+      imports: [],
       inject: [],
-      useFactory:()=> ({
+      useFactory: () => ({
         type: 'postgres',
-        //entities: [User],
+        host: process.env.DB_HOST,
+        port: 5432,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE_NAME,
         autoLoadEntities: true,
         synchronize: true,
-        port: 5432,
-        username: 'postgres',
-        password: 'Qwerty',
-        host: 'localhost',
-        database: 'Nestjs-blog-application'
       })
-     }),
-     TagsModule,
-     MetaOptionsModule
+    }),
+    TagsModule,
+    MetaOptionsModule
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
