@@ -7,7 +7,7 @@ services:
     ports:
       - "${PORT}:4000"
     environment:
-      - NODE_ENV=dev
+      - NODE_ENV=${NODE_ENV}
     volumes:
       - .:/app
       - /app/node_modules
@@ -31,7 +31,7 @@ services:
     networks:
       - nest-project-net
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE_NAME}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -44,6 +44,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
       - "${PGADMIN_HOST_PORT}:${PGADMIN_CONTAINER_PORT}"
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
     depends_on:
       - db
     networks:
