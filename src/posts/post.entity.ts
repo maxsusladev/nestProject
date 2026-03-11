@@ -83,13 +83,13 @@ export class Post {
 
 
 
-    @OneToOne(() => MetaOption,(metaOptions)=> metaOptions.post, {
+    @OneToOne(() => MetaOption, (metaOptions) => metaOptions.post, {
         cascade: true,
         eager: true
     })
     metaOptions?: MetaOption | null;
 
-    @ManyToOne(()=> User, (user) => user.posts)
+    @ManyToOne(() => User, (user) => user.posts)
     author: User;
 
 }
