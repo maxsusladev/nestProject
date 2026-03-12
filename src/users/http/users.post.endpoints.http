@@ -1,12 +1,32 @@
 POST http://localhost:4000/users/
 Content-Type: application/json
 
-
-
 {
 
     "firstName":"Jone",
     "lastName":"doe",
     "email":"Jone@email.com",
     "password":"Qwerty123!"
+}
+
+
+POST http://localhost:4000/users/create-many
+Content-Type: application/json
+{
+    "users":[
+{
+
+    "firstName":"Jone1",
+    "lastName":"doe2",
+    "email":"Joneeee@email.com",
+    "password":"Qwerty12311!"
+},
+{
+
+    "firstName":"Jone2",
+    "lastName":"doe2",
+    "email":"Marke@email.com",
+    "password":"Qwerty123!11"
+}
+]
 }
