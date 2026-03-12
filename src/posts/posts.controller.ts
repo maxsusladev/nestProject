@@ -8,15 +8,15 @@ import { PatchPostDto } from './dtos/patch-posts.dto';
 @ApiTags('posts')
 export class PostsController {
     constructor(
-        private readonly postsService: PostsService 
-    ){}
+        private readonly postsService: PostsService
+    ) { }
 
     @Get()
-    public getPosts(@Param('userId') userId: number){
+    public getPosts(@Param('userId') userId: number) {
         console.log('ssss')
         return this.postsService.findAll(userId)
     }
-    
+
     @ApiOperation({
         summary: "Creates a new blog posts"
     })
@@ -25,12 +25,12 @@ export class PostsController {
         description: " You get a 201 response if you post is created successfully"
     })
     @Post()
-    public createPost(@Body() createPostDto: CreatePostDto){
-       return this.postsService.createPost(createPostDto)
+    public createPost(@Body() createPostDto: CreatePostDto) {
+        return this.postsService.createPost(createPostDto)
     }
 
     @Delete()
-    public deletePost(@Query('id', ParseIntPipe) id:number) {
+    public deletePost(@Query('id', ParseIntPipe) id: number) {
         return this.postsService.deletePost(id)
     }
 
@@ -45,8 +45,8 @@ export class PostsController {
     })
 
     @Patch()
-        public updatePost(@Body() patchPostsDto: PatchPostDto){
-                console.log(patchPostsDto)
-        }
-    
+    public updatePost(@Body() patchPostsDto: PatchPostDto) {
+        return this.postsService.update(patchPostsDto)
+    }
+
 }
