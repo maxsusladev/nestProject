@@ -5,13 +5,12 @@ Content-Type: application/json
 {
   "title": "What's new with NestJS",
   "postType": "post",
-  "slug": "new-with-nestjs-121111",
+  "slug": "new-with-nestjs-12",
   "status": "draft",
   "content": "test content",
   "schema": "{\r\n \"@context\": \"https:\/\/schema.org\",\r\n \"@type\": \"Person\"\r\n }",
   "featuredImageUrl": "http://localhost.com/images/image1.jpg",
-  "publishOn": "2024-03-16T07:46:32+0000",
-  //"tags": ["nestjs", "typescript"],
+  "publishOn": "2025-03-16T07:46:32.000Z",
   "metaOptions" : {
     "metaValue":"{ \"sidebarEnabled\": true, \"footerActive\": true }"
     },
@@ -19,3 +18,6 @@ Content-Type: application/json
   "tags": [1]
 
 }
+
+
+//"tags": ["nestjs", "typescript"],
