@@ -9,6 +9,4 @@ export default Joi.object({
     DB_DATABASE_NAME: Joi.string().required(),
     DB_HOST: Joi.string().required(),
     DB_USERNAME: Joi.string().required(),
-    PROFILE_API_KEY: Joi.string().required(),
-
 })
