@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, Post, Body, Req, ParseIntPipe, ValidationPipe, Patch } from '@nestjs/common';
+import { Controller, Get, Param, Query, Post, Body, Req, ParseIntPipe, ValidationPipe, Patch, UseGuards, SetMetadata } from '@nestjs/common';
 import { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUSersParamDto } from './dtos/get-users-param.dto';
@@ -6,6 +6,9 @@ import { PatchUserDto } from './dtos/patch-user-dto';
 import { UsersService } from './providers/users.service';
 import { ApiTags, ApiQuery, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { CreateManyUsersDto } from './dtos/create-many-user.dto';
+import { AccessTokenGuard } from 'src/auth/guards/access-token/access-token.guard';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 
 @Controller('users')
@@ -48,6 +51,7 @@ export class UsersController {
         return this.userService.findAll(getUsersPaaramDto, limit, page)
     }
     @Post()
+    @Auth(AuthType.None)
     public createUsers(@Body() createUserDto: CreateUserDto) {
         return this.userService.createUser(createUserDto);
     }

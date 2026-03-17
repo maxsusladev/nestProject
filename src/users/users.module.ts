@@ -12,11 +12,17 @@ import profileConfig from './config/profile.config';
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService, UsersCreateManyProvider, CreateUserProvider, FindOneUserByEmailProvider],
+  providers: [
+    UsersService,
+    UsersCreateManyProvider,
+    CreateUserProvider,
+    FindOneUserByEmailProvider,
+  ],
   exports: [UsersService],
-  imports: [forwardRef(() => AuthModule), TypeOrmModule.forFeature([User]),
-  ConfigModule.forFeature(profileConfig)
-
+  imports: [
+    forwardRef(() => AuthModule),
+    TypeOrmModule.forFeature([User]),
+    ConfigModule.forFeature(profileConfig),
   ]
 })
 export class UsersModule { }

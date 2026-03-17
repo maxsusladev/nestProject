@@ -10,6 +10,8 @@ import { PatchPostDto } from '../dtos/patch-posts.dto';
 import { GetPostsDto } from '../dtos/get-post.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { CreatePostProvider } from './create-post.provider';
+import { ActiveUserData } from 'src/auth/interfaces/active-user.interface';
 
 
 @Injectable()
@@ -20,32 +22,14 @@ export class PostsService {
         @InjectRepository(MetaOption)
         private postsMetaOptionRepository: Repository<MetaOption>,
         private readonly userService: UsersService,
-
         private readonly tagsService: TagsService,
+        private readonly paginationProvider: PaginationProvider,
+        private readonly createPostProvider: CreatePostProvider
 
-        private readonly paginationProvider: PaginationProvider
     ) { }
 
-    public async createPost(createPostDto: CreatePostDto) {
-
-        let author = await this.userService.findById(createPostDto.authorId)
-        let post;
-        let tags;
-
-
-        if (createPostDto.tags) {
-            tags = await this.tagsService.findultipleTAgs(createPostDto.tags)
-        }
-        if (author) {
-            post = this.postsRepositiry.create({
-                ...createPostDto,
-                author,
-                tags,
-            })
-        }
-
-
-        return await this.postsRepositiry.save(post)
+    public async createPost(createPostDto: CreatePostDto, user: ActiveUserData) {
+        return await this.createPostProvider.createPost(createPostDto, user)
     }
 
     public async findAll(postQuery: GetPostsDto, userId: number): Promise<Paginated<Post>> {
