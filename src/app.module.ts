@@ -5,7 +5,6 @@ import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/user.entity';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -18,7 +17,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
 import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
-import { CreatePostProvider } from './post/providers/create-post.provider';
 
 @Module({
   imports: [
@@ -62,7 +60,6 @@ import { CreatePostProvider } from './post/providers/create-post.provider';
       useClass: AuthenticationGuard,
     },
     AccessTokenGuard,
-    CreatePostProvider,
   ],
 })
 export class AppModule { }
