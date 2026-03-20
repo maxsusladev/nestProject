@@ -1,4 +1,4 @@
-POST http://localhost:4000/users/
+POST http://localhost:4001/users/
 Content-Type: application/json
 
 
@@ -6,8 +6,8 @@ Content-Type: application/json
 
     "firstName":"Maks",
     "lastName":"Susla",
-    "email":"susla@mail.com",
-    "password":"Qwerty123!"
+    "email":"suslaaaaa@mail.com",
+    "password":"Qwerty123sdsdsd!"
 }
 
 

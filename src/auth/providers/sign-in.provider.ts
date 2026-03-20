@@ -24,10 +24,11 @@ export class SignInProvider {
         let isEqual: boolean = false;
 
         try {
-            isEqual = await this.hasingProvider.comparePassword(
-                signInDto.password,
-                user.password,
-            );
+            if (user.password)
+                isEqual = await this.hasingProvider.comparePassword(
+                    signInDto.password,
+                    user.password,
+                );
 
         } catch (error) {
             throw new RequestTimeoutException(error, {
