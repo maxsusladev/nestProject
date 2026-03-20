@@ -19,13 +19,14 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Nest JS MasterClass - Blog app API')
     .setDescription('Use the base API URL as http')
-    .addServer("http://localhost:3000")
+    .addServer("http://localhost:4001")
     .setVersion('1.0')
     .build()
 
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document)
-  await app.listen(process.env.PORT ?? 4000);
+  app.enableCors()
+  await app.listen(Number(process.env.PORT) || 4001, '0.0.0.0');
 }
 bootstrap();

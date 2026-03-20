@@ -14,7 +14,7 @@ export class AuthService {
 
 
         private readonly signInProvider: SignInProvider,
-        private readonly refreshTokensProvire: RefreshTokensProvider
+        private readonly refreshTokensProvider: RefreshTokensProvider
 
     ) { }
 
@@ -23,7 +23,7 @@ export class AuthService {
     }
 
     public async refreshTokens(refreshTokenDto: RefreshTokenDto) {
-        return await this.refreshTokensProvire.refreshTokens(refreshTokenDto)
+        return await this.refreshTokensProvider.refreshTokens(refreshTokenDto)
     }
 
 
