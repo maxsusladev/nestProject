@@ -24,12 +24,6 @@ export class UsersService {
         @InjectRepository(User)
         private usersRepository: Repository<User>,
 
-
-        @Inject(forwardRef(() => AuthService))
-        private readonly authService: AuthService,
-        @Inject(profileConfig.KEY)
-        private readonly profileConfiguration: ConfigType<typeof profileConfig>,
-
         private readonly usersCreateManyProvider: UsersCreateManyProvider,
 
         private readonly createUserProvider: CreateUserProvider,
@@ -43,29 +37,6 @@ export class UsersService {
     ) { }
     public async createUser(createUserDto: CreateUserDto) {
         return this.createUserProvider.createUser(createUserDto);
-    }
-
-    public findAll(
-        getUsersPaaramDto: GetUSersParamDto,
-        limit: number,
-        page: number,
-
-    ) {
-
-        const isAuth = this.authService.isAuth()
-        console.log(this.profileConfiguration)
-        return [
-            {
-                firstName: 'john',
-                email: "jouen@email.com"
-
-            },
-            {
-                firstName: 'Conor',
-                email: "Conor@email.com"
-
-            }
-        ]
     }
 
     public async findById(id: number) {
