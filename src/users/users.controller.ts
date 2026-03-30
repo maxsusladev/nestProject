@@ -6,7 +6,6 @@ import { PatchUserDto } from './dtos/patch-user-dto';
 import { UsersService } from './providers/users.service';
 import { ApiTags, ApiQuery, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { CreateManyUsersDto } from './dtos/create-many-user.dto';
-import { AccessTokenGuard } from 'src/auth/guards/access-token/access-token.guard';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { AuthType } from 'src/auth/enums/auth-type.enum';
 
@@ -20,7 +19,6 @@ export class UsersController {
 
     }
 
-    @Get('{/:id}')
     @ApiOperation({
         summary: "fetches a list of registred users on the application",
     })
@@ -42,14 +40,7 @@ export class UsersController {
         description: 'the position of the number that you wants',
         example: 2,
     })
-    public getUsers(
-        @Param() getUsersPaaramDto: GetUSersParamDto,
-        @Query('limit', ParseIntPipe) limit: number,
-        @Query('page', ParseIntPipe) page: number,
-    ) {
 
-        return this.userService.findAll(getUsersPaaramDto, limit, page)
-    }
     @Post()
     @Auth(AuthType.None)
     @UseInterceptors(ClassSerializerInterceptor)
