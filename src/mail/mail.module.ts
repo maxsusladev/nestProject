@@ -3,7 +3,7 @@ import { MailService } from './providers/mail.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { join } from "path"
-import { EjsAdapter } from "@nestjs-modules/mailer/dist/adapters/ejs.adapter"
+import * as ejs from "ejs"
 import { strict } from 'assert';
 
 
@@ -29,9 +29,11 @@ import { strict } from 'assert';
         },
         template: {
           dir: join(__dirname, "templates"),
-          adapter: new EjsAdapter({
-            inlineCssEnabled: true
-          }),
+          adapter: {
+            compile: (mail, callback) => {
+              return ejs.renderFile(mail.data.template, mail.data.context, callback)
+            }
+          },
           options: {
             strict: false,
           }
